@@ -48,7 +48,6 @@ function updateUI() {
             }
         }
     }
-
 }
 
 window.addEventListener('DOMContentLoaded', event => {

@@ -19,6 +19,9 @@ function updateUI() {
             clickTargets.classList.add('red');
             clickTargets.classList.remove('black');
         }
+        for(let i = 0; i <= 5; i++) {
+            
+        }
     }
 }
 
@@ -52,8 +55,14 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
     document.getElementById("click-targets").addEventListener("click", event => {
-        game.playInColumn();
+        const targetId = event.target.id
+        if(!targetId.starstWith('column-')) return;
+
+        const columnI = Number.parseInt((targetId[targetId.length - 1]))
+
+        game.playInColumn(columnI);
         updateUI();
     });
+
 
 });

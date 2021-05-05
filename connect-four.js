@@ -11,6 +11,14 @@ function updateUI() {
         boardHolder.classList.remove("is-invisible");
         gameName.innerHTML = game.getName();
         const currentPlayer = game.currentPlayer;
+        const clickTargets = document.getElementById('click-targets');
+        if(currentPlayer === 1) {
+            clickTargets.classList.add('black');
+            clickTargets.classList.remove('red');
+        } else {
+            clickTargets.classList.add('red');
+            clickTargets.classList.remove('black');
+        }
     }
 }
 

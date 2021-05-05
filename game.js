@@ -24,4 +24,8 @@ export class Game {
     getTokenAt(rowIndexNum, columnIndexNum) {
         return this.columns[columnIndexNum].getTokenAt(rowIndexNum);
     }
+
+    isColumnFull(columnIndex) {
+        return this.columns[columnIndex].isFull();
+    }
 }

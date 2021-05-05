@@ -12,14 +12,14 @@ function updateUI() {
         gameName.innerHTML = game.getName();
         const currentPlayer = game.currentPlayer;
         const clickTargets = document.getElementById('click-targets');
-        if(currentPlayer === 1) {
+        if (currentPlayer === 1) {
             clickTargets.classList.add('black');
             clickTargets.classList.remove('red');
         } else {
             clickTargets.classList.add('red');
             clickTargets.classList.remove('black');
         }
-        for(let rowInd = 0; rowInd <= 5; rowInd++) {
+        for (let rowInd = 0; rowInd <= 5; rowInd++) {
             for (let colInd = 0; colInd <= 6; colInd++) {
                 const square = document.querySelector(`#square-${rowInd}-${colInd}`);
                 square.innerHTML = "";
@@ -38,7 +38,17 @@ function updateUI() {
                 }
             }
         }
+        for (let columnI = 0; columnI <= 6; columnI++) {
+            let column = document.getElementById(`column-${columnI}`)
+
+            if (game.isColumnFull(columnI)) {
+                column.classList.add('full')
+            } else {
+                column.classList.remove('full')
+            }
+        }
     }
+
 }
 
 window.addEventListener('DOMContentLoaded', event => {
@@ -72,7 +82,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
     document.getElementById("click-targets").addEventListener("click", event => {
         const targetId = event.target.id;
-        if(!targetId.startsWith('column-')) return;
+        if (!targetId.startsWith('column-')) return;
 
         const columnI = Number.parseInt(targetId[targetId.length - 1]);
 
@@ -82,3 +92,4 @@ window.addEventListener('DOMContentLoaded', event => {
 
 
 });
+ 

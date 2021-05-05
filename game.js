@@ -1,4 +1,4 @@
-import { Column } from "./column";
+import { Column } from "./column.js";
 
 export class Game {
     constructor(player1Name, player2Name) {

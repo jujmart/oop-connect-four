@@ -19,8 +19,24 @@ function updateUI() {
             clickTargets.classList.add('red');
             clickTargets.classList.remove('black');
         }
-        for(let i = 0; i <= 5; i++) {
-            
+        for(let rowInd = 0; rowInd <= 5; rowInd++) {
+            for (let colInd = 0; colInd <= 6; colInd++) {
+                const square = document.querySelector(`#square-${rowInd}-${colInd}`);
+                square.innerHTML = "";
+
+                const playerNumber = game.getTokenAt(rowInd, colInd);
+                if (playerNumber === 1) {
+                    const token = document.createElement("div");
+                    token.classList.add("token");
+                    token.classList.add("black");
+                    square.appendChild(token);
+                } else if (playerNumber === 2) {
+                    const token = document.createElement("div");
+                    token.classList.add("token");
+                    token.classList.add("red");
+                    square.appendChild(token);
+                }
+            }
         }
     }
 }
@@ -55,10 +71,10 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
     document.getElementById("click-targets").addEventListener("click", event => {
-        const targetId = event.target.id
-        if(!targetId.starstWith('column-')) return;
+        const targetId = event.target.id;
+        if(!targetId.startsWith('column-')) return;
 
-        const columnI = Number.parseInt((targetId[targetId.length - 1]))
+        const columnI = Number.parseInt(targetId[targetId.length - 1]);
 
         game.playInColumn(columnI);
         updateUI();

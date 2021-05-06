@@ -1,6 +1,9 @@
 import { Column } from "./column.js";
 import { ColumnWinInspector } from "./column-win-inspector.js";
 import { RowWinInspector } from "./row-win-inspector.js";
+import { DiagonalWinInspector } from './diagonal-win-inspector.js'
+import { GameJsonSerializer } from './game-JSON-serializer.js'
+import { GameJsonDesrializer} from './game-JSON-deserializer.js'
 
 export class Game {
     constructor(player1Name, player2Name) {
@@ -38,6 +41,10 @@ export class Game {
 
         if (this.winnerNumber === 0) {
             this.checkForRowWin();
+        }
+
+        if (this.winnerNumber === 0) {
+            this.checkForDiagonalWin();
         }
     }
 
@@ -88,4 +95,18 @@ export class Game {
             }
         }
     }
+
+    checkForDiagonalWin() {
+        for (let columnI = 0; columnI <= 3; columnI++) {
+            let columnsD = this.columns.slice(columnI, columnI + 4);
+            let inspector = new DiagonalWinInspector(columnsD);
+            let winnerNumber = inspector.inspect();
+
+            if (winnerNumber === 1 || winnerNumber === 2) {
+                this.winnerNumber = winnerNumber;
+                return
+            }
+        }
+    }
+
 }

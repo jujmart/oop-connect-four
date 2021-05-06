@@ -1,5 +1,6 @@
 import { Game } from "./game.js";
-
+import { GameJsonSerializer } from './game-JSON-serializer.js'
+import { GameJsonDeserializer } from './game-JSON-deserializer.js'
 let game;
 
 function updateUI() {
@@ -87,8 +88,15 @@ window.addEventListener('DOMContentLoaded', event => {
 
         game.playInColumn(columnI);
         updateUI();
+        new GameJsonSerializer(game)
     });
+    
+    if (game.name2 !== null) {
+        new GameJsonDeserializer(game)
+        updateUI();
+    }
+
+
 
 
 });
- 

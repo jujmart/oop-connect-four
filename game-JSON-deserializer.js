@@ -1,4 +1,4 @@
-import { Game } from "./game"
+// import { Game } from "./game.js"
 
 export class GameJsonDeserializer {
     constructor(game) {
@@ -13,5 +13,6 @@ export class GameJsonDeserializer {
     }
     deserialize() {
         this.game.name1 = localStorage.getItem('player1Name')
+        this.game.name2 = localStorage.getItem('player2Name')
     }
 }

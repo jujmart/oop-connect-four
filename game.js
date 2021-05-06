@@ -34,6 +34,10 @@ export class Game {
         if (this.winnerNumber === 0) {
             this.checkForColumnWin();
         }
+
+        if (this.winnerNumber === 0) {
+            this.checkForRowWin();
+        }
     }
 
     getTokenAt(rowIndexNum, columnIndexNum) {
@@ -69,5 +73,9 @@ export class Game {
             }
 
         }
+    }
+
+    checkForRowWin() {
+        
     }
 }

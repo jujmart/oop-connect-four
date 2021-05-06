@@ -3,8 +3,8 @@ import { GameJsonSerializer } from './game-JSON-serializer.js'
 import { GameJsonDeserializer } from './game-JSON-deserializer.js'
 let game;
 
+const boardHolder = document.getElementById("board-holder");
 function updateUI() {
-    const boardHolder = document.getElementById("board-holder");
     const gameName = document.getElementById("game-name");
     if (game === undefined) {
         boardHolder.classList.add("is-invisible");
@@ -77,7 +77,12 @@ window.addEventListener('DOMContentLoaded', event => {
         playerOneInput.value = "";
         playerTwoInput.value = "";
         disabledNewGameBtn();
+        localStorage.clear();
+        new GameJsonSerializer(game).serialize();
         updateUI();
+        if (localStorage.getItem("player1Name") === '' || localStorage.getItem("player2Name") === '') {
+            boardHolder.classList.add("is-invisible");
+        }
     });
 
     document.getElementById("click-targets").addEventListener("click", event => {
@@ -85,7 +90,7 @@ window.addEventListener('DOMContentLoaded', event => {
         if (!targetId.startsWith('column-')) return;
 
         const columnI = Number.parseInt(targetId[targetId.length - 1]);
-
+        newGameBtn.disabled = false;
         game.playInColumn(columnI);
         updateUI();
         new GameJsonSerializer(game).serialize();
@@ -94,6 +99,7 @@ window.addEventListener('DOMContentLoaded', event => {
     if (localStorage.getItem("player1Name")) {
         game = new Game("", "");
         new GameJsonDeserializer(game).deserialize();
+        newGameBtn.disabled = false;
         updateUI();
     }
 

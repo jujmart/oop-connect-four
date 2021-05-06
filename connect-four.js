@@ -88,15 +88,14 @@ window.addEventListener('DOMContentLoaded', event => {
 
         game.playInColumn(columnI);
         updateUI();
-        new GameJsonSerializer(game)
+        new GameJsonSerializer(game).serialize();
     });
     
-    if (game.name2 !== null) {
-        new GameJsonDeserializer(game)
+    if (localStorage.getItem("player1Name")) {
+        game = new Game("", "");
+        new GameJsonDeserializer(game).deserialize();
         updateUI();
     }
-
-
 
 
 });

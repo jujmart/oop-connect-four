@@ -1,13 +1,13 @@
 export class GameJsonSerializer {
     constructor(game) {
         this.game = game;
-        this.column0 = []
-        this.column1 = []
-        this.column2 = []
-        this.column3 = []
-        this.column4 = []
-        this.column5 = []
-        this.column6 = []
+        this.column0 = [];
+        this.column1 = [];
+        this.column2 = [];
+        this.column3 = [];
+        this.column4 = [];
+        this.column5 = [];
+        this.column6 = [];
 
     }
     serialize() {
@@ -24,13 +24,13 @@ export class GameJsonSerializer {
 
             }
         }
-        localStorage.setItem('column0', this.column0)
-        localStorage.setItem('column1', this.column1)
-        localStorage.setItem('column2', this.column2)
-        localStorage.setItem('column3', this.column3)
-        localStorage.setItem('column4', this.column4)
-        localStorage.setItem('column5', this.column5)
-        localStorage.setItem('column6', this.column6)
+        localStorage.setItem('column0', JSON.stringify(this.column0))
+        localStorage.setItem('column1', JSON.stringify(this.column1))
+        localStorage.setItem('column2', JSON.stringify(this.column2))
+        localStorage.setItem('column3', JSON.stringify(this.column3))
+        localStorage.setItem('column4', JSON.stringify(this.column4))
+        localStorage.setItem('column5', JSON.stringify(this.column5))
+        localStorage.setItem('column6', JSON.stringify(this.column6))
 
     }
 

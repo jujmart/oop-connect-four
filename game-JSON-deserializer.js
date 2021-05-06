@@ -12,6 +12,6 @@ export class GameJsonDeserializer {
         this.column6 = []
     }
     deserialize() {
-        this.game.name1 = localStorage.getItem('player1name')
+        this.game.name1 = localStorage.getItem('player1Name')
     }
 }
